@@ -17,6 +17,14 @@ class SongAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class ArtistAdminForm(forms.ModelForm):
+    bio = forms.CharField(label='Биография', widget=CKEditorUploadingWidget(), required=False)
+
+    class Meta:
+        model = Artist
+        fields = '__all__'
+
+
 class LinkInline(admin.TabularInline):
     model = Link
     extra = 1
@@ -87,6 +95,7 @@ class ArtistAdmin(admin.ModelAdmin):
               'bio')
     prepopulated_fields = {'slug': ('nick_name',)}
     search_fields = ('nick_name',)
+    form = ArtistAdminForm
 
 
 # admin.site.register(Song, SongAdmin)
