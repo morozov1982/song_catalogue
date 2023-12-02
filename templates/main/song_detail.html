@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ song.title }}</title>
+</head>
+<body>
+
+<h1>{{ song.title }}</h1>
+
+{% if song.bpm %}
+    <div><strong>Темп:</strong> {{ song.bpm }} bpm</div>
+{% endif %}
+
+<div>
+    {% for performer in song.performers.all %}
+        <strong>{{ performer }}</strong>{% if not forloop.last %},
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% if song.key %}
+    <div><strong>Тональность:</strong> {{ song.key }}</div>
+{% endif %}
+
+{% if song.chords %}
+    <div><strong>Аккорды:</strong> {{ song.chords }}</div>
+{% endif %}
+
+{% if song.additional %}
+    <div>{{ song.additional }}</div>
+{% endif %}
+
+</body>
+</html>
