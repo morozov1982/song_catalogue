@@ -28,7 +28,11 @@
 {% endif %}
 
 {% if song.additional %}
-    <div>{{ song.additional }}</div>
+    <div>{{ song.additional|safe }}</div>
+{% endif %}
+
+{% if song.lyrics %}
+    <div>{{ song.lyrics|safe }}</div>
 {% endif %}
 
 </body>

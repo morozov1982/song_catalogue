@@ -6,6 +6,7 @@ from django.conf import settings
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('main.urls', namespace='main'))
 ]
 

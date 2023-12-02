@@ -1,8 +1,20 @@
+from django import forms
 from django.contrib import admin
 from django.db.models import Min
 from django.utils.html import format_html
 
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
 from .models import Link, Song, Artist, Album, ArtistImage, Genre
+
+
+class SongAdminForm(forms.ModelForm):
+    lyrics = forms.CharField(label='Слова', widget=CKEditorUploadingWidget(), required=False)
+    additional = forms.CharField(label='Дополнительная информация', widget=CKEditorUploadingWidget(), required=False)
+
+    class Meta:
+        model = Song
+        fields = '__all__'
 
 
 class LinkInline(admin.TabularInline):
@@ -32,6 +44,7 @@ class SongAdmin(admin.ModelAdmin):
     search_fields = ('title', 'performers__nick_name', 'composers__nick_name', 'authors__nick_name')
     save_on_top = True
     save_as = True
+    form = SongAdminForm
 
     def display_performers(self, obj):
         return ', '.join([str(p) for p in obj.performers.all()])
