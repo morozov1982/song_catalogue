@@ -63,3 +63,19 @@ class FilterSongsView(GenreYear, ListView):
             Q(genres__in=self.request.GET.getlist("genre"))
         )
         return queryset
+
+
+class SearchView(ListView):
+    """Поиск песен и артистов"""
+
+    def get_queryset(self):
+        queryset = Song.objects.filter(
+            Q(title__icontains=self.request.GET.get("q")) |
+            Q(performers__nick_name__icontains=self.request.GET.get("q"))
+        )
+        return queryset
+    #
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(object_list=None, **kwargs)
+    #     context['q'] = self.request.GET.get('q')
+    #     return context
