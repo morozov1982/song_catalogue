@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load main_tags %}
 
 <html lang="ru">
 <head>
@@ -49,6 +50,8 @@
 
 <main class="flex-shrink-0">
     <div class="container pt-60">
+
+        {% get_last_songs count=5 %}
 
         <h1 class="mt-5">Каталог песен (всего: {{ song_list.all.count }})</h1>
 
