@@ -109,6 +109,9 @@ class Artist(models.Model):
     def __str__(self):
         return self.nick_name
 
+    def get_absolute_url(self):
+        return reverse('main:artist', kwargs={'slug': self.slug})
+
     class Meta:
         verbose_name = 'Артист'
         verbose_name_plural = 'Артисты'

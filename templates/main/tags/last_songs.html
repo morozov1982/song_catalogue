@@ -1,6 +1,6 @@
 <h2 class="mt-5">Последние добавленные:</h2>
 {% for song in last_songs %}
-    <div class="row">
+    <div>
         <a href="{{ song.get_absolute_url }}">{{ song.title }}</a>
     </div>
 {% endfor %}

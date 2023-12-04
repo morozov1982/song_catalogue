@@ -8,13 +8,17 @@
 
 <h1>{{ song.title }}</h1>
 
+{% if song.year %}
+    <div><strong>Год:</strong> {{ song.year }} год</div>
+{% endif %}
+
 {% if song.bpm %}
     <div><strong>Темп:</strong> {{ song.bpm }} bpm</div>
 {% endif %}
 
 <div>
     {% for performer in song.performers.all %}
-        <strong>{{ performer }}</strong>{% if not forloop.last %},
+        <strong><a href="{{ performer.get_absolute_url }}">{{ performer }}</a></strong>{% if not forloop.last %},
         {% endif %}
     {% endfor %}
 </div>

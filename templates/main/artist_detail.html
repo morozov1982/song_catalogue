@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ artist.nick_name }}</title>
+</head>
+<body>
+
+<h1>{{ artist.nick_name }}
+    {% if artist.first_name %}
+        {{ artist.first_name }}
+    {% endif %}
+    {% if artist.sur_name %}
+        {{ artist.sur_name }}
+    {% endif %}
+    {% if artist.last_name %}
+        {{ artist.last_name }}
+    {% endif %}
+</h1>
+
+{% if artist.bio %}
+    <div>{{ artist.bio|safe }}</div>
+{% endif %}
+
+</body>
+</html>
