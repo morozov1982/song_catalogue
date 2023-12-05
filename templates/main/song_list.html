@@ -69,8 +69,9 @@
                         <a href="{{ link.url }}" target="_blank">
                         {% with ld=link.description|lower|default:'' %}
                             {% if ld == 'youtube' %}
-                                <i class="bi bi-youtube fs-6"></i>{% elif ld in '["vk", "ya", "yandex"]' %}
-                                <i class="bi bi-play-circle-fill"></i>
+                                <i class="bi bi-youtube fs-6"></i>{% elif ld == 'vk' %}
+                                <i class="bi bi-play-circle-fill bi-vk"></i>{% elif ld in '["ya", "yandex"]' %}
+                                <i class="bi bi-play-circle-fill bi-ya"></i>
                             {% else %}
                                 {{ link.description }}
                             {% endif %}{% endwith %}</a>{% if not forloop.last %},{% endif %}

@@ -3,5 +3,15 @@
 }
 
 .bi-youtube {
-    color: red;
+    color: #F00;
+}
+
+.bi-vk {
+    color: #07f;
+}
+
+.bi-ya {
+    color: rgba(24, 24, 24, .95);
+    background-color: #fc0;
+    border-radius: 50%;
 }
