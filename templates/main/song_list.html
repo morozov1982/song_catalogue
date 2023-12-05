@@ -69,14 +69,11 @@
                         <a href="{{ link.url }}" target="_blank">
                         {% with ld=link.description|lower|default:'' %}
                             {% if ld == 'youtube' %}
-                                <i class="bi bi-youtube fs-6"></i>
-                            {% elif ld|stringformat:'in:["vk", "ya", "yandex"]' %}
+                                <i class="bi bi-youtube fs-6"></i>{% elif ld in '["vk", "ya", "yandex"]' %}
                                 <i class="bi bi-play-circle-fill"></i>
                             {% else %}
                                 {{ link.description }}
-                            {% endif %}
-                        {% endwith %}
-                        </a>{% if not forloop.last %},{% endif %}
+                            {% endif %}{% endwith %}</a>{% if not forloop.last %},{% endif %}
                     {% endfor %}
                 </td>
             </tr>
