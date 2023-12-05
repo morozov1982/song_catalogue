@@ -13,5 +13,5 @@ def get_genres():
 
 @register.inclusion_tag('main/tags/last_songs.html')
 def get_last_songs(count=5):
-    songs = Song.objects.all()[:count]
+    songs = Song.objects.order_by('-id')[:count]
     return {"last_songs": songs}

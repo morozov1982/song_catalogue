@@ -19,7 +19,7 @@ class GenreYear:
         return Genre.objects.all()
 
     def get_years(self):
-        return Song.objects.filter(year__isnull=False).order_by('year').values("year")
+        return Song.objects.filter(year__isnull=False).distinct().order_by('year').values("year")
 
 
 class SongListView(GenreYear, ListView):
@@ -58,10 +58,16 @@ class ArtistDetailView(DetailView):
 class FilterSongsView(GenreYear, ListView):
     """Фильтр песен"""
     def get_queryset(self):
-        queryset = Song.objects.filter(
-            Q(year__in=self.request.GET.getlist("year")) |
-            Q(genres__in=self.request.GET.getlist("genre"))
-        )
+        queryset = Song.objects.all()
+
+        years = self.request.GET.getlist("year")
+        genres = self.request.GET.getlist("genre")
+
+        if years:
+            queryset = queryset.filter(year__in=years)
+        if genres:
+            queryset = queryset.filter(genres__name__in=genres)
+
         return queryset
 
 
