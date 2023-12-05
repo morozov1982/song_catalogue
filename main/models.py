@@ -7,7 +7,6 @@ class Genre(models.Model):
     """Стили"""
     name = models.CharField(verbose_name='Стиль', max_length=100)
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-    url = models.SlugField(verbose_name='Слаг', max_length=160, unique=True)
     slug = models.SlugField(max_length=130, unique=True, db_index=True, verbose_name='Слаг')
 
     def __str__(self):
