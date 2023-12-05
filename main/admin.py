@@ -10,7 +10,12 @@ from .models import Link, Song, Artist, Album, ArtistImage, Genre
 
 class SongAdminForm(forms.ModelForm):
     lyrics = forms.CharField(label='Слова', widget=CKEditorUploadingWidget(), required=False)
-    additional = forms.CharField(label='Дополнительная информация', widget=CKEditorUploadingWidget(), required=False)
+    additional = forms.CharField(
+        label='Дополнительная информация',
+        widget=CKEditorUploadingWidget(),
+        required=False,
+        initial='<strong>Закольцованность припева:</strong> <br><strong>Диапазон:</strong> '
+    )
 
     class Meta:
         model = Song
@@ -53,6 +58,7 @@ class SongAdmin(admin.ModelAdmin):
     save_on_top = True
     save_as = True
     form = SongAdminForm
+    filter_horizontal = ('performers', 'composers', 'authors', 'genres')
 
     def display_performers(self, obj):
         return ', '.join([str(p) for p in obj.performers.all()])

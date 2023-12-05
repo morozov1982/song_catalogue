@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ song.title }}</title>
-</head>
-<body>
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load main_tags %}
 
-<h1>{{ song.title }}</h1>
+{% block title %}{{ song.title }}{% endblock %}
+
+{% block content %}
+
+<h1 class="mt-5">{{ song.title }}</h1>
 
 {% if song.year %}
     <div><strong>Год:</strong> {{ song.year }} год</div>
@@ -39,5 +39,4 @@
     <div>{{ song.lyrics|safe }}</div>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}

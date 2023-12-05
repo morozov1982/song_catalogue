@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ artist.nick_name }}</title>
-</head>
-<body>
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load main_tags %}
 
-<h1>{{ artist.nick_name }}
+{% block title %}{{ artist.nick_name }}{% endblock %}
+
+{% block content %}
+
+<h1 class="mt-5">{{ artist.nick_name }}
     {% if artist.first_name %}
         {{ artist.first_name }}
     {% endif %}
@@ -22,5 +22,4 @@
     <div>{{ artist.bio|safe }}</div>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}
