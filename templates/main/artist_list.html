@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load main_tags %}
+
+{% block title %}Артисты{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Артисты: (всего: {{ artist_list.all.count }})</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr class="table-dark">
+            <th scope="col">№</th>
+            <th scope="col">Артист</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for artist in artist_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <a href="{{ artist.get_absolute_url }}">
+                        <strong>{{ artist.nick_name }}</strong>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

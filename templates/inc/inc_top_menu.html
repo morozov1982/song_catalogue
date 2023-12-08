@@ -8,7 +8,7 @@
                     </li>
                 {% endif %}
                 <li><a href="#" class="nav-link px-2
-                    {% if request.resolver_match.url_name == 'artist' %}text-secondary
+                    {% if request.resolver_match.url_name == 'artist' or request.resolver_match.url_name == 'artists' %}text-secondary
                     {% else %}text-white{% endif %}">Артисты</a></li>
             </ul>
 

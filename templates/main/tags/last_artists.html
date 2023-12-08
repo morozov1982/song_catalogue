@@ -1,0 +1,6 @@
+<h5>Недавние артисты:</h5>
+{% for artist in last_artists %}
+    <div>
+        <a href="{{ artist.get_absolute_url }}" class="link-secondary">{{ artist.nick_name }}</a>
+    </div>
+{% endfor %}
