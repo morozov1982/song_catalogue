@@ -48,9 +48,7 @@ class SongAdmin(admin.ModelAdmin):
     fields = (('title', 'slug', 'year'),
               ('key', 'chords', 'bpm'),
               'cover_image', 'genres',
-              ('performers', 'performer_order'),
-              ('composers', 'composer_order'),
-              ('authors', 'author_order'),
+              'performers', 'composers', 'authors',
               'lyrics', 'additional')
     prepopulated_fields = {'slug': ('title',)}
     list_filter = ('performers', 'year', 'key', 'bpm', 'genres', 'composers', 'authors')
@@ -113,6 +111,7 @@ class ArtistAdmin(admin.ModelAdmin):
 # admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Album)
 # admin.site.register(Genre)
+# admin.site.register(Link)
 
 admin.site.site_title = "Какталог песен"
 admin.site.site_header = "Какталог песен"

@@ -1,4 +1,3 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.urls import reverse
 
@@ -33,13 +32,7 @@ class Song(models.Model):
     cover_image = models.ImageField('Обложка', upload_to='song_covers/', blank=True, null=True)
     genres = models.ManyToManyField('Genre', related_name='genre_songs', verbose_name='Стили', blank=True)
     additional = models.TextField(verbose_name='Дополнительная информация', blank=True, null=True,
-                                  default='Закольцованность припева: \nДиапазон: ')
-    performer_order = ArrayField(models.PositiveIntegerField(), verbose_name='Порядок исполнителей', blank=True,
-                                 null=True)
-    composer_order = ArrayField(models.PositiveIntegerField(), verbose_name='Порядок композиторов', blank=True,
-                                null=True)
-    author_order = ArrayField(models.PositiveIntegerField(), verbose_name='Порядок авторов', blank=True,
-                              null=True)
+                                  default='<strong>Закольцованность припева:</strong> <br><strong>Диапазон:</strong>')
     slug = models.SlugField(max_length=130, unique=True, db_index=True, verbose_name='Слаг')
 
     def __str__(self):
@@ -57,7 +50,7 @@ class Link(models.Model):
     """Ссылки"""
     url = models.URLField('Ссылка')
     description = models.CharField(verbose_name='Описание', max_length=255, blank=True, null=True)
-    songs = models.ForeignKey('Song', verbose_name='Песня', related_name='links', on_delete=models.PROTECT, blank=True,
+    songs = models.ForeignKey('Song', verbose_name='Песня', related_name='links', on_delete=models.CASCADE, blank=True,
                               null=True)
 
     def __str__(self):
