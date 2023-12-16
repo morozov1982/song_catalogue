@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
 
     'main',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +88,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "song_catalogue",
         "USER": "postgres",
         "PASSWORD": "12345",

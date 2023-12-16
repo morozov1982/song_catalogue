@@ -7,9 +7,11 @@ from django.conf import settings
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page=reverse_lazy('main:index')), name='logout'),
+    path('api/v1/', include('api.urls', namespace='api')),
     path('', include('main.urls', namespace='main'))
 ]
 
