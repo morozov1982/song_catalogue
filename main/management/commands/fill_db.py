@@ -66,6 +66,7 @@ class Command(BaseCommand):
                 'chords': song_data.get('chords'),
                 'bpm': float(song_data.get('bpm')) if song_data.get('bpm') else None,
                 'additional': (f'<strong>Закольцованность припева:</strong> {song_data.get("chorus")}<br>'
+                               f'<strong>Гармонии куплета и припева:</strong> <br>'
                                f'<strong>Диапазон: </strong> {song_data.get("range")}'),
             }
 

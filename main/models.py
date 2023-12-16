@@ -32,7 +32,9 @@ class Song(models.Model):
     cover_image = models.ImageField('Обложка', upload_to='song_covers/', blank=True, null=True)
     genres = models.ManyToManyField('Genre', related_name='genre_songs', verbose_name='Стили', blank=True)
     additional = models.TextField(verbose_name='Дополнительная информация', blank=True, null=True,
-                                  default='<strong>Закольцованность припева:</strong> <br><strong>Диапазон:</strong>')
+                                  default='<strong>Закольцованность припева:</strong> <br>'
+                                          '<strong>Гармонии куплета и припева:</strong> <br>'
+                                          '<strong>Диапазон:</strong>')
     slug = models.SlugField(max_length=130, unique=True, db_index=True, verbose_name='Слаг')
 
     def __str__(self):

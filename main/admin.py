@@ -103,15 +103,11 @@ class ArtistAdmin(admin.ModelAdmin):
 
 
 @admin.register(Genre)
-class ArtistAdmin(admin.ModelAdmin):
+class GenreAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-# admin.site.register(Song, SongAdmin)
-# admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Album)
-# admin.site.register(Genre)
-# admin.site.register(Link)
 
 admin.site.site_title = "Какталог песен"
 admin.site.site_header = "Какталог песен"
