@@ -2,7 +2,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from main.models import Song
-from .serializers import SongListSerializer, SongDetailSerializer, SongCreateSerializer
+from .serializers import (SongListSerializer, SongCreateSerializer,
+                          # SongDetailSerializer
+                          )
 
 
 class SongListAPIView(APIView):
@@ -17,7 +19,8 @@ class SongDetailAPIView(APIView):
     """Подробная информация о песне"""
     def get(self, request, pk):
         song = Song.objects.get(id=pk)
-        serializer = SongDetailSerializer(song)
+        # serializer = SongDetailSerializer(song)
+        serializer = SongListSerializer(song)
         return Response(serializer.data)
 
 
