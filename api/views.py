@@ -1,10 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from main.models import Song
-from .serializers import (SongListSerializer, SongCreateSerializer,
-                          # SongDetailSerializer
-                          )
+from main.models import Song, Artist
+from .serializers import (SongListSerializer, SongCreateSerializer, SongDetailSerializer,
+                          ArtistDetailSerializer, ArtistListSerializer)
 
 
 class SongListAPIView(APIView):
@@ -19,8 +19,7 @@ class SongDetailAPIView(APIView):
     """Подробная информация о песне"""
     def get(self, request, pk):
         song = Song.objects.get(id=pk)
-        # serializer = SongDetailSerializer(song)
-        serializer = SongListSerializer(song)
+        serializer = SongDetailSerializer(song)
         return Response(serializer.data)
 
 
@@ -31,3 +30,16 @@ class SongCreateAPIView(APIView):
         if song.is_valid():
             song.save()
         return Response(status=201)
+
+
+class ArtistListAPIView(ListAPIView):
+    """Вывод списка артистов"""
+    queryset = Artist.objects.all()
+    serializer_class = ArtistListSerializer
+
+
+class ArtistDetailAPIView(RetrieveAPIView):
+    """Подробная информация об артисте"""
+    queryset = Artist.objects.all()
+    serializer_class = ArtistDetailSerializer
+
