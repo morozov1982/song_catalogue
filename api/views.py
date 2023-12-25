@@ -1,35 +1,28 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 
 from main.models import Song, Artist
 from .serializers import (SongListSerializer, SongCreateSerializer, SongDetailSerializer,
                           ArtistDetailSerializer, ArtistListSerializer)
 
 
-class SongListAPIView(APIView):
+class SongListAPIView(ListAPIView):
     """Вывод списка песен"""
-    def get(self, request):
-        songs = Song.objects.all()
-        serializer = SongListSerializer(songs, many=True)
-        return Response(serializer.data)
+
+    queryset = Song.objects.all()
+    serializer_class = SongListSerializer
 
 
-class SongDetailAPIView(APIView):
+class SongDetailAPIView(RetrieveAPIView):
     """Подробная информация о песне"""
-    def get(self, request, pk):
-        song = Song.objects.get(id=pk)
-        serializer = SongDetailSerializer(song)
-        return Response(serializer.data)
+
+    queryset = Song.objects.all()
+    serializer_class = SongDetailSerializer
 
 
-class SongCreateAPIView(APIView):
+class SongCreateAPIView(CreateAPIView):
     """Добавление песни"""
-    def post(self, request):
-        song = SongCreateSerializer(data=request.data)
-        if song.is_valid():
-            song.save()
-        return Response(status=201)
+
+    serializer_class = SongCreateSerializer
 
 
 class ArtistListAPIView(ListAPIView):
