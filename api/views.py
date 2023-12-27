@@ -11,7 +11,7 @@ class SongListAPIView(ListAPIView):
 
     queryset = Song.objects.all()
     serializer_class = SongListSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
 class SongDetailAPIView(RetrieveAPIView):
