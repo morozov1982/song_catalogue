@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 
 from main.models import Song, Artist
@@ -10,6 +11,7 @@ class SongListAPIView(ListAPIView):
 
     queryset = Song.objects.all()
     serializer_class = SongListSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class SongDetailAPIView(RetrieveAPIView):
