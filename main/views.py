@@ -67,5 +67,5 @@ class SearchView(ListView):
         queryset = Song.objects.filter(
             Q(title__icontains=self.request.GET.get("q")) |
             Q(performers__nick_name__icontains=self.request.GET.get("q"))
-        )
+        ).distinct()
         return queryset
