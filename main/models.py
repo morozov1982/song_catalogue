@@ -61,6 +61,7 @@ class Link(models.Model):
     class Meta:
         verbose_name = 'Ссылка'
         verbose_name_plural = 'Ссылки'
+        ordering = ['pk']
 
 
 class Album(models.Model):

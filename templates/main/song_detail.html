@@ -39,4 +39,13 @@
     <div>{{ song.lyrics|safe }}</div>
 {% endif %}
 
+{% if song.links %}
+    <div>
+    <h5 class="mt-4">Ссылки:</h5>
+        {% for link in song.links.all %}
+            <a href="{{ link.url }}" target="_blank">{{ link.description|btn|safe }}</a>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock %}
