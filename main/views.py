@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Min, Q
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -13,6 +14,10 @@ from .models import Song, Artist, Genre
 #     return render(request, 'index.html', context)
 
 
+class DataMixin:
+    paginate_by = 20
+
+
 class GenreYear:
     """Жанры и годы выхода песен"""
     def get_genres(self):
@@ -22,11 +27,13 @@ class GenreYear:
         return Song.objects.filter(year__isnull=False).distinct().order_by('year').values("year")
 
 
-class SongListView(GenreYear, ListView):
+class SongListView(DataMixin, GenreYear, ListView):
     """Список песен"""
     model = Song
-    queryset = Song.objects.annotate(first_performer_name=Min('performers__nick_name')).order_by(
-        'first_performer_name')
+
+    def get_queryset(self):
+        return Song.objects.annotate(first_performer_name=Min('performers__nick_name')).order_by(
+            'first_performer_name')
 
 
 class SongDetailView(GenreYear, DetailView):
@@ -34,7 +41,7 @@ class SongDetailView(GenreYear, DetailView):
     model = Song
 
 
-class ArtistListView(GenreYear, ListView):
+class ArtistListView(DataMixin, GenreYear, ListView):
     """Список артистов"""
     model = Artist
 
